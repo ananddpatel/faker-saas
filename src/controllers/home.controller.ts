@@ -28,7 +28,7 @@ export const getSampleData = (req, res) => {
   const methodNamesToGet: IMethodRequestData[] = [...req.body];
   const data: any[] = [];
   
-  [...Array(12	).keys()].forEach(_ => {
+  [...Array(10).keys()].forEach(_ => {
     const rowData = {};
     methodNamesToGet.forEach(m => {
       const method = methods[m.group][m.name];
