@@ -9,24 +9,11 @@
         <div v-if="error" class="container text-center alert alert-danger">{{error}}</div>
         
         <div class="row">
-          <div class="col-2">
+          <div class="col-12 col-md-2">
 
             <div class="row">
-<!-- 
-              <div v-if="groups" v-for="(group, index) in groups" :key="index" class="col-12 col-md-6 group">
-                <h3>{{group}}</h3>
-                <div class="">
-                  <button
-                    class="m-1 btn btn-sm"
-                    v-for="(method, index) in fakerMethods[group]"
-                    :key="index"
-                    @click="selectMethod(method)"
-                    :class="{'btn-info': method.selected}">{{method.name}}
-                  </button>
-                </div>
-              </div> -->
 
-              <div v-if="groups" v-for="(group, index) in groups" :key="index" class="col-12 accordion" id="accordionExample">
+              <div v-if="groups" v-for="(group, index) in groups" :key="index" class="col-12 accordion" id="group-accordian">
                   <div class="card">
                     <div class="card-header" :id="'group' + index">
                       <h5 class="mb-0">
@@ -36,7 +23,7 @@
                       </h5>
                     </div>
                 
-                    <div :id="'methods' + index" class="collapse" :aria-labelledby="'group' + index" data-parent="#accordionExample">
+                    <div :id="'methods' + index" class="collapse" :aria-labelledby="'group' + index" data-parent="#group-accordian">
                       <div class="card-body">
                           <button
                           class="m-1 btn btn-sm"
