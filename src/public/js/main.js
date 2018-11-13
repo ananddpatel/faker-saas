@@ -66,6 +66,18 @@ const app = new Vue({
         .catch(err => {
           this.error = "Error! Could not get sample data.";
         })
+    },
+    buy() {
+      axios.post('/download', {rows: this.requestedRowCount})
+        .then(d => {
+          // console.log(d.data);
+          console.log(d.headers);
+          
+          saveAs(new Blob(d.data, {type: d.headers['content-type']}))
+        })
+        .catch(err => {
+          this.error = "Error! Could not download your file."
+        })
     }
   }
 });

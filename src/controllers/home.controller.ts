@@ -1,5 +1,8 @@
 import * as faker from 'faker';
 import { fakerMethods as methods } from '../data/faker-methods';
+import * as XLSX from 'xlsx';
+// import * as fs from 'fs';
+
 interface IMethodGroupsResponse {
   [key: string]: string[]
 }
@@ -41,3 +44,17 @@ export const getSampleData = (req, res) => {
   
   res.send(data)
 };
+
+export const downloadExcel = (_req, res) => {
+  const ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet([['asd', 'asd'], ['hello', 'world']]);
+  const wb: XLSX.WorkBook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+  // const file = XLSX.write(wb);
+  var fileName = "Categories.xlsx";
+  res.setHeader('Content-disposition', 'attachment; filename=' + fileName);
+  res.setHeader('Content-type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+  var wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'buffer'});
+  res.send(new Buffer(wbout));
+  // fs.writeFileSync("../storage/test-write.xlsx", file, { encoding: 'binary' });
+  // res.download('../storage/test-write.xlsx')
+}
