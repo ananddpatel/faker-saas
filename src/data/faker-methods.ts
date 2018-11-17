@@ -38,7 +38,7 @@ export const fakerMethods: IFakerMap = {
     "company suffixes": "suffixes",
     "company name": "companyName",
     "company suffix": "companySuffix",
-    "catch phrase": "catchPhrase",
+    "company catch phrase": "catchPhrase",
     "company business": "bs",
     "company catch phrase adjective": "catchPhraseAdjective",
     "company catch phrase descriptor": "catchPhraseDescriptor",
@@ -58,9 +58,9 @@ export const fakerMethods: IFakerMap = {
   date: {
     "date past": "past",
     "date future": "future",
-    "date between": "between",
+    // "date between": "between",
     "date recent": "recent",
-    "date soon": "soon",
+    // "date soon": "soon",
     "date month": "month",
     "date weekday": "weekday"
   },
@@ -75,7 +75,7 @@ export const fakerMethods: IFakerMap = {
     "finance currency name": "currencyName",
     "finance currency symbol": "currencySymbol",
     "finance bitcoin address": "bitcoinAddress",
-    "finance ethereum address": "ethereumAddress",
+    // "finance ethereum address": "ethereumAddress",
     "finance iban": "iban",
     "finance bic": "bic"
   },
@@ -112,7 +112,7 @@ export const fakerMethods: IFakerMap = {
   internet: {
     "internet avatar": "avatar",
     "internet email": "email",
-    "example email": "exampleEmail",
+    "internet example email": "exampleEmail",
     "internet username": "userName",
     "internet protocol": "protocol",
     "internet url": "url",
@@ -168,8 +168,8 @@ export const fakerMethods: IFakerMap = {
     "random words": "words",
     "random image": "image",
     "random locale": "locale",
-    "alpha numeric": "alphaNumeric",
-    "hexa decimal": "hexaDecimal"
+    "random alpha numeric": "alphaNumeric",
+    // "random hexa decimal": "hexaDecimal"
   },
 
   system: {
@@ -180,8 +180,8 @@ export const fakerMethods: IFakerMap = {
     "system common file ext": "commonFileExt",
     "system file type": "fileType",
     "system file ext": "fileExt",
-    "system directory path": "directoryPath",
-    "system file path": "filePath",
+    // "system directory path": "directoryPath",
+    // "system file path": "filePath",
     "system semver": "semver"
   }
 };

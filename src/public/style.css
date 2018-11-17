@@ -9,3 +9,7 @@ body {
 #data-table {
     color: black;
 }
+
+.table-container {
+    overflow-x: scroll;
+}

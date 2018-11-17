@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon --config nodemon.json",
     "build": "tsc -p .",
-    "serve": "node dist/index.js"
+    "serve": "node dist/index.js",
+    "serve-dev": "ts-node ./src/index.ts"
   },
   "author": "",
   "license": "ISC",
