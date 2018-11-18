@@ -13,3 +13,16 @@ body {
 .table-container {
     overflow-x: scroll;
 }
+
+.c-pointer {
+    cursor: pointer;
+}
+
+.close {
+    background: #f7f7f9;
+}
+
+.black {
+    color: black;
+}
+

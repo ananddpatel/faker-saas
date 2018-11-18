@@ -17,7 +17,9 @@ const app = new Vue({
       "phone number"
     ],
     loadingData: false,
-    rowData: []
+    rowData: [],
+    jumbotronHidden: false
+    // jumbotronHidden: localStorage.getItem('jumbotronHidden') === 'true' || false
   },
   mounted() {
     axios
@@ -26,8 +28,8 @@ const app = new Vue({
         const data = res.data;
         for (const methodGroup in data) {
           if (data.hasOwnProperty(methodGroup)) {
-            data[methodGroup] = data[methodGroup].map(item => ({group: methodGroup, name: item, selected: true}));
-            // data[methodGroup] = data[methodGroup].map(item => ({group: methodGroup, name: item, selected: this.defaultSelected.indexOf(item) >= 0}));
+            // data[methodGroup] = data[methodGroup].map(item => ({group: methodGroup, name: item, selected: true}));
+            data[methodGroup] = data[methodGroup].map(item => ({group: methodGroup, name: item, selected: this.defaultSelected.indexOf(item) >= 0}));
           }
         }
         this.fakerMethods = res.data;
@@ -41,6 +43,7 @@ const app = new Vue({
       return this.fakerMethods ? Object.keys(this.fakerMethods) : null;
     },
     selectedMethods() {
+      // TODO: need to push new selected methods to the end instead of order that it appears inthe mapping
       let _selectedMethods = [];
       for (const group in this.fakerMethods) {
         if (this.fakerMethods.hasOwnProperty(group)) {
@@ -61,15 +64,17 @@ const app = new Vue({
     }
   },
   methods: {
-    selectMethod(method) {
+    hideJumbotron() {
+      this.jumbotronHidden = true;
+      // localStorage.setItem('jumbotronHidden', true)
+    },
+    toggleMethodSelection(method) {
       method.selected = !method.selected;
     },
     getSampleData() {
-      this.loadingData = true;
       axios.post('/sampledata', this.selectedMethods)
         .then(res => {
           this.rowData = res.data
-          this.loadingData = false;
         })
         .catch(err => {
           this.error = "Error! Could not get sample data.";
@@ -96,6 +101,7 @@ const app = new Vue({
       return new Blob(byteArrays, { type: contentType });
   },
     buy(fileType) {
+      this.loadingData = true;
       axios.post('/download', {fileType: fileType, rows: this.requestedRowCount, methods: this.selectedMethods})
         .then(res => {
           const blob = this.base64toBlob(res.data.buffer, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
