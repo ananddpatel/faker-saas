@@ -100,26 +100,25 @@ const app = new Vue({
           byteArrays[sliceIndex] = new Uint8Array(bytes);
       }
       return new Blob(byteArrays, { type: contentType });
-  },
-    buy(fileType) {
-      this.loadingData = true;
-      axios.post('/download', {fileType: fileType, rows: this.requestedRowCount, methods: this.selectedMethods})
-        .then(res => {
-          this.loadingData = false;
-          const blob = this.base64toBlob(res.data.buffer, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-          saveAs(blob, res.data.fileName);
-        })
-        .catch(err => {
-          this.error = "Error! Could not download your file."
-        })
     },
-    checkout() {
+    buy(fileType) {
       this.$checkout.open({
         name: 'FakeDataGen',
         currency: 'USD',
-        amount: 99999,
+        amount: 2500,
         token: (token) => {
           console.log(token);
+          
+          this.loadingData = true;
+          axios.post('/download', {fileType: fileType, rows: this.requestedRowCount, methods: this.selectedMethods, stripeToken: token.id, email: token.email})
+          .then(res => {
+            this.loadingData = false;
+            const blob = this.base64toBlob(res.data.buffer, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+            saveAs(blob, res.data.fileName);
+          })
+          .catch(err => {
+            this.error = "Error! Could not initiate payment. Please try again later."
+        })
         } 
       });
     }

@@ -5,19 +5,7 @@
     <% include ../partials/nav %>
     <div class="container-fluid mt-2">
       <div id="app">
-        <div v-if="!jumbotronHidden" class="jumbotron-container">
-          <div @click="hideJumbotron" class="close text-right px-3 pt-2 c-pointer black">x</div>
-          <div class="jumbotron py-3">
-            <h1 class="display-3">Generate Tons of Fake Data Instantly!</h1>
-            <p class="lead">1. Pick your data fields.</p>
-            <p class="lead">2. Pay and download within seconds!</p>
-            <hr class="my-4">
-            <ul>
-              <li>Download will start as soon as payment is processed.</li>
-              <li>Contact us if you require more rows.</li>
-            </ul>
-          </div>
-        </div>
+        <% include ../partials/jumbotron %>
 
         <div v-if="error" class="container text-center alert alert-danger">{{error}}</div>
 
@@ -52,13 +40,7 @@
 
           
           <div class="col-12 col-md-10">
-            <!-- <div class="row">
-              <div id="num-records-form" class="col-12 col-md-2">
-                <label class="col-form-label" for="num-record"><h5>Rows:</h5></label>
-                <input type="number" class="form-control" value="1000" id="num-record">
-                <button class="btn btn-success btn-sm">Generate</button>
-              </div>
-            </div> -->
+
             <div class="d-flex justify-content-between mb-2">
               <div class="d-flex">
                 <h5 class="align-self-center mb-0">Rows</h5>
@@ -71,13 +53,12 @@
                 </div>
               </div>
               <div>
-                <button @click="checkout" :disabled="loadingData" class="btn btn-warning">Buy Excel</button>
-                <!-- <button @click="buy('xlsx')" :disabled="loadingData" class="btn btn-warning">Buy Excel</button> -->
+                <!-- <button @click="checkout" :disabled="loadingData" class="btn btn-warning">Buy Excel</button> -->
+                <button @click="buy('xlsx')" :disabled="loadingData" class="btn btn-warning">Buy Excel</button>
                 <button @click="buy('csv')" :disabled="loadingData" class="btn btn-warning">Buy CSV</button>
               </div>
             </div>
-            <!-- <label for="records">  </label>
-            <input name="records" type="number" class="form-contorl" value="1000"> -->
+
             <div class="table-container">
               <table class="table table-hover table-stripped table-bordered"  id="data-table">
                 <thead>
@@ -108,14 +89,7 @@
           </div>
         </div>
 
-        <footer class="text-muted">
-            <div class="container text-center">
-                <p class="mb-1">© 2017-2018 AponVenture</p>
-                <ul class="list-inline">
-                  <li class="list-inline-item"><a href="#">Support</a></li>
-                </ul>
-            </div>
-          </footer>
+        <% include ../partials/footer %>
 
       </div>
     </div>

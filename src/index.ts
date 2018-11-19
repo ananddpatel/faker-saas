@@ -29,7 +29,7 @@ app.set('view engine', 'ejs');
 app.get('/', homeController.index);
 app.get('/methods', homeController.getMethodData);
 app.post('/sampledata', homeController.getSampleData);
-app.post('/download', homeController.downloadExcel);
+app.post('/download', homeController.downloadFakeDataFile);
 
 const port = process.env.PORT || 3000
 app.listen(port, () => {
