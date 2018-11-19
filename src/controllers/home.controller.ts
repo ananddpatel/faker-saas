@@ -10,7 +10,7 @@ import { generateFakerData } from '../common/utils';
  * @param res response
  */
 export const index = (_req, res) => {
-  res.render("pages/index");
+  res.render("pages/index", {stripePublic: process.env.STRIPE_PUBLIC})
 };
 
 /**

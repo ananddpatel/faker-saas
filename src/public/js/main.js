@@ -1,3 +1,4 @@
+Vue.use(VueStripeCheckout, options);
 const app = new Vue({
   el: "#app",
   data: {
@@ -104,12 +105,30 @@ const app = new Vue({
       this.loadingData = true;
       axios.post('/download', {fileType: fileType, rows: this.requestedRowCount, methods: this.selectedMethods})
         .then(res => {
+          this.loadingData = false;
           const blob = this.base64toBlob(res.data.buffer, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
           saveAs(blob, res.data.fileName);
         })
         .catch(err => {
           this.error = "Error! Could not download your file."
         })
+    },
+    checkout() {
+      // this.$checkout.close() 
+      // is also available.
+      this.$checkout.open({
+        name: 'FakeDataGen',
+        currency: 'USD',
+        amount: 99999,
+        token: (token) => {
+          console.log(token);
+          
+          // Send the token to your server
+          // for payment or subscription handling,
+          // or do whatever you want with it
+          // I don't really care. 
+        } 
+      });
     }
   }
 });

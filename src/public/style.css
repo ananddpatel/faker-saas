@@ -2,6 +2,11 @@ body {
     background: #ececec;
 }
 
+nav .logo {
+    width: 15%;
+    height: 15%;
+}
+
 #num-records-form {
     width: 10%;
 }
