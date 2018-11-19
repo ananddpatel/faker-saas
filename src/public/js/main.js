@@ -114,19 +114,12 @@ const app = new Vue({
         })
     },
     checkout() {
-      // this.$checkout.close() 
-      // is also available.
       this.$checkout.open({
         name: 'FakeDataGen',
         currency: 'USD',
         amount: 99999,
         token: (token) => {
           console.log(token);
-          
-          // Send the token to your server
-          // for payment or subscription handling,
-          // or do whatever you want with it
-          // I don't really care. 
         } 
       });
     }
