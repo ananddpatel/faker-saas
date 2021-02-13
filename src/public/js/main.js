@@ -29,8 +29,8 @@ const app = new Vue({
         const data = res.data;
         for (const methodGroup in data) {
           if (data.hasOwnProperty(methodGroup)) {
-            // data[methodGroup] = data[methodGroup].map(item => ({group: methodGroup, name: item, selected: true}));
-            data[methodGroup] = data[methodGroup].map(item => ({group: methodGroup, name: item, selected: this.defaultSelected.indexOf(item) >= 0}));
+            data[methodGroup] = data[methodGroup].map(item => ({group: methodGroup, name: item, selected: true}));
+            // data[methodGroup] = data[methodGroup].map(item => ({group: methodGroup, name: item, selected: this.defaultSelected.indexOf(item) >= 0}));
           }
         }
         this.fakerMethods = res.data;
@@ -95,7 +95,7 @@ const app = new Vue({
   
           var bytes = new Array(end - begin);
           for (var offset = begin, i = 0; offset < end; ++i, ++offset) {
-              bytes[i] = byteCharacters[offset].charCodeAt(0);
+            bytes[i] = byteCharacters[offset].charCodeAt(0);
           }
           byteArrays[sliceIndex] = new Uint8Array(bytes);
       }
